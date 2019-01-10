@@ -1,6 +1,11 @@
 <?php
-require_once 'core/Model.php';
-require_once 'core/View.php';
-require_once 'core/Controller.php';
-require_once 'core/Route.php';
-Route::start();
+define ('APP', dirname(__FILE__));
+
+require_once APP.'/core/Model.php';
+require_once APP.'/core/View.php';
+require_once APP.'/core/Controller.php';
+require_once APP.'/core/Router.php';
+
+
+$router = new Router();
+$router->run();
