@@ -1,5 +1,6 @@
 <?php
 
+include_once APP.'/models/AuthModel.php';
 
 class AuthController
 {

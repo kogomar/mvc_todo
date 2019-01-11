@@ -4,8 +4,8 @@
 class View
 {
 
-    function generate($content_view, $data = null)
+    function generate($content_view, $data )
     {
-        include 'application/views/'.$content_view;
+        include APP.'/views/'.$content_view;
     }
 }

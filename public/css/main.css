@@ -69,7 +69,16 @@ a{
     color: #474747;
     font-size: 12px;
 }
-
+th{
+    border: 1px solid #656565;
+}
+tr{
+    border-bottom: 1px solid #656565;
+    height: 25px;
+}
+.second{
+    text-align: right;
+}
 .footer{
     height: 35px;
     background-color: rgba(45, 79, 255, 0.71);

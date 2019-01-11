@@ -1,11 +1,17 @@
 <?php
 
+include_once APP.'/models/MainModel.php';
 
 class MainController extends Controller
 {
 
     function actionIndex()
     {
-        $this->view->generate('MainView.php');
+        $data = array();
+        $data['projects'] = MainModel::getProjectList();
+        $data['tasks']    = MainModel::getTaskList();
+
+        $this->view->generate('MainView.php', $data);
+
     }
 }

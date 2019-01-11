@@ -38,24 +38,26 @@
     <div class="col-middle">
         <div class="tasks">
             <p>Tasks</p>
-            <table border="1" width="100%" >
+            <table  width="100%" >
                 <tr>
                     <th>Task</th>
                     <th>Project</th>
                 </tr>
                 <tr>
                     <td>Task</td>
-                    <td>Home</td>
+                    <td class="second">Home</td>
+
                 </tr>
                 <tr>
                     <td>Task</td>
-                    <td>Home</td>
+                    <td class="second">Home</td>
                 </tr>
                 <tr>
                     <td>Task</td>
-                    <td>Home</td>
+                    <td class="second">Home</td>
                 </tr>
             </table>
+            <?php var_dump($data); ?>
         </div>
     </div>
     <div class="col-right"></div>
