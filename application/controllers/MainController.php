@@ -11,7 +11,7 @@ class MainController extends Controller
         $data['projects'] = MainModel::getProjectList();
         $data['tasks']    = MainModel::getTaskList();
 
-        $this->view->generate('MainView.php', $data);
+        View::generate('MainView.php', $data);
 
     }
 }

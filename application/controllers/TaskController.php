@@ -14,6 +14,7 @@ class TaskController
     }
     public function actionEdit()
     {
-        TaskModel::deleteTask();
+        TaskModel::editTask();
     }
+
 }

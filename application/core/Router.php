@@ -19,6 +19,14 @@ class Router
         }
     }
 
+    public function checkUser()
+    {
+            $whiteUri = ['/login/' , '/registration/', '/registration', '/login' ];
+        if (!isset($_SESSION['user_id']) && !in_array($_SERVER['REQUEST_URI'], $whiteUri) ){
+            header("Location: /login");
+        }
+    }
+
     public function run()
     {
         $uri =  $this->getUri();
@@ -26,22 +34,33 @@ class Router
         foreach ($this->routes as $uriPattern => $path){
 
             if(preg_match("~$uriPattern~" , $uri)){
-                $segments = explode('/', $path);
+
+                $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
+                $segments = explode('/', $internalRoute);
                 $controllerName = array_shift($segments).'Controller';
                 $controllerName = ucfirst($controllerName);
                 $actionName = 'action'.ucfirst(array_shift($segments));
+
+                $parameters = $segments;
 
                 $controllerFile = APP.'/controllers/'.$controllerName.'.php';
                 if (file_exists($controllerFile)){
                     include ($controllerFile);
                 }
                 $controllerObj = new $controllerName();
-                $result = $controllerObj ->$actionName();
-                if($result != null){
+                //$result = $controllerObj ->$actionName($parameters);
+                $result = call_user_func_array(array($controllerObj, $actionName), $parameters);
+                if($result == null){
+                    $success = true;
                     break;
                 }
             }
         }
+        if (!isset($success)){
+            $this->ErrorPage404();
+        }
+
+
     }
 
     function ErrorPage404()

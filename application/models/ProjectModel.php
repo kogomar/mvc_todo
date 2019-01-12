@@ -12,4 +12,7 @@ class ProjectModel
     public static function editProject(){
         $db = DB::getConnection();
     }
+    public static function viewProject($id){
+        $db = DB::getConnection();
+    }
 }

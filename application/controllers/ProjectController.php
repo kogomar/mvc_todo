@@ -16,4 +16,9 @@ class ProjectController
     {
         ProjectModel::deleteProject();
     }
+    public function actionView($id)
+    {
+        ProjectModel::viewProject($id);
+             echo 'Single project '.$id;
+    }
 }

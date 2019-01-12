@@ -6,7 +6,7 @@ class Middleware
 
     public static function getPost()
     {
-        if(!empty($_POST)) {
+        if(!empty($_POST['action'])) {
             $controllerName = $_POST['controller'] . 'Controller';
             $controllerName = ucfirst($controllerName);
             $actionName = 'action' . ucfirst($_POST['action']);
