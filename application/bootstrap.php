@@ -8,5 +8,5 @@ require_once APP.'/core/View.php';
 require_once APP.'/core/DB.php';
 require_once APP.'/core/Middleware.php';
 $router = new Router();
-//$router->checkUser();
+$router->checkUser();
 $router->run();

@@ -9,6 +9,7 @@ li{
 a{
     text-decoration: none;
 }
+/* header start */
 .header{
     width: 100%;
     height: 100px;
@@ -16,12 +17,34 @@ a{
     display: flex;
 }
 .header p{
-    color: white;
     font-size: 30px;
     font-weight: 700;
     padding: 40px 0 0 40px ;
     margin: 0;
+    width: 70%;
 }
+.header p a{
+    color: white;
+}
+.right_header{
+    width:30%
+}
+.right_header ul{
+    display: flex;
+    float: right;
+}
+.right_header ul li{
+    font-size: 16px;
+    margin: 30px 20px 0 0px;
+}
+.right_header a{
+    color: black;
+}
+.right_header a:hover{
+    color: #5d5d5d;
+}
+    /* header end */
+
 .content{
     width: 100%;
     height: auto;
@@ -120,9 +143,48 @@ tr{
 .errors span{
     margin-top: 10px;
     font-size: 18px;
-
 }
 /* Auth styles end */
+
+
+/* Tasks styles end */
+.tasks{
+    width: 98%;
+    margin-left: 1%;
+}
+.single_task ul{
+    display: flex;
+    border-bottom: 1px solid gray;
+    height: 35px;
+    padding: 0;
+    margin: 0;
+}
+.single_task ul li{
+  margin: 8px 0 0 10px;
+}
+.square_color{
+    width: 3%;
+}
+.pname, .tname{
+    width: 44%;
+}
+.pname{
+    text-align: right;
+}
+.square_color img, .circle_color img{
+    width: 15px;
+}
+.circle_color{
+    width: 3%;
+    text-align: right;
+    padding-right: 10px;
+}
+.task_menu{
+    width: 2%;
+}
+/* Tasks styles end */
+
+
 .footer{
     height: 35px;
     background-color: rgba(45, 79, 255, 0.71);

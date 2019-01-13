@@ -72,6 +72,9 @@ class AuthController extends Controller
         }
 
         require_once  APP.'/views/RegisterView.php';
+    }
 
+    public function actionLogout(){
+        unset($_SESSION['user_name']) ;
     }
 }

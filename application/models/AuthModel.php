@@ -69,7 +69,7 @@ class AuthModel extends Model
     }
     public static function successAuth($userData)
     {
-        $_SESSION['user_id'] = $userData['id'];
         $_SESSION['user_name'] = $userData['login'];
+        header("Location: /");
     }
 }

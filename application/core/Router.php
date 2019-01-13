@@ -22,7 +22,7 @@ class Router
     public function checkUser()
     {
             $whiteUri = ['/login/' , '/registration/', '/registration', '/login' ];
-        if (!isset($_SESSION['user_id']) && !in_array($_SERVER['REQUEST_URI'], $whiteUri) ){
+        if (!isset($_SESSION['user_name']) && !in_array($_SERVER['REQUEST_URI'], $whiteUri) ){
             header("Location: /login");
         }
     }

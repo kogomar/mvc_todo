@@ -6,18 +6,19 @@ class Middleware
 
     public static function getPost()
     {
-        if(!empty($_POST['action'])) {
-            $controllerName = $_POST['controller'] . 'Controller';
+
+            $controllerName = $_POST['param'] . 'Controller';
             $controllerName = ucfirst($controllerName);
             $actionName = 'action' . ucfirst($_POST['action']);
-            $controllerFile = APP . '/controllers/' . $controllerName . '.php';
+            $controllerFile =APP.'/controllers/'.$controllerName.'.php';
             if (file_exists($controllerFile)) {
-                include($controllerFile);
+                require $controllerFile;
             }
             $controllerObj = new $controllerName();
             $controllerObj->$actionName($_POST);
-        }
+
     }
 }
-
-        Middleware::getPost();
+    if(!empty($_POST['action'])) {
+    Middleware::getPost();
+    }

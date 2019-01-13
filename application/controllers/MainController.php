@@ -10,7 +10,7 @@ class MainController extends Controller
         $data = array();
         $data['projects'] = MainModel::getProjectList();
         $data['tasks']    = MainModel::getTaskList();
-
+        $data['date'] = date("Y-m-d");
         View::generate('MainView.php', $data);
 
     }

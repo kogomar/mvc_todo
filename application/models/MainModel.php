@@ -7,20 +7,23 @@ public static function getTaskList()
 {
     $db = DB::getConnection();
     $taskList = array();
-    $result = $db->query('SELECT * from tasks');
+    $result = $db->query('SELECT projects.pname, projects.color, tasks.id, tasks.tname, tasks.tuser, tasks.priority, tasks.end_time 
+                                    FROM tasks, projects WHERE projects.id = tasks.project_id AND tasks.status=0 ORDER BY tasks.priority');
     $result ->setFetchMode(PDO::FETCH_ASSOC);
 
     $i=0;
     while ($row = $result->fetch()){
         $taskList[$i]['id'] = $row['id'];
-        $taskList[$i]['project_id'] = $row['project_id'];
-        $taskList[$i]['name'] = $row['name'];
-        $taskList[$i]['user'] = $row['user'];
+        $taskList[$i]['tname'] = $row['tname'];
+        $taskList[$i]['user'] = $row['tuser'];
+        $taskList[$i]['priority'] = $row['priority'];
         $taskList[$i]['end_time'] = $row['end_time'];
-        $taskList[$i]['time'] = $row['time'];
+        $taskList[$i]['pname'] = $row['pname'];
+        $taskList[$i]['color'] = $row['color'];
         $i++;
     }
     return $taskList;
+
 }
 
     public static function getProjectList()
@@ -33,9 +36,9 @@ public static function getTaskList()
         $i=0;
         while ($row = $result->fetch()){
             $projectsList[$i]['id'] = $row['id'];
-            $projectsList[$i]['name'] = $row['name'];
+            $projectsList[$i]['pname'] = $row['pname'];
             $projectsList[$i]['color'] = $row['color'];
-            $projectsList[$i]['user'] = $row['user'];
+            $projectsList[$i]['user'] = $row['puser'];
             $projectsList[$i]['time'] = $row['time'];
             $i++;
         }

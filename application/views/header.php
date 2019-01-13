@@ -7,15 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Todo</title>
     <link rel="stylesheet" href="../../public/css/main.css">
-    <script src="../../public/js/main.js"></script>
     <script src="../../public/js/jquery-3.3.1.min.js"></script>
+    <script src="../../public/js/main.js"></script>
+
 </head>
 <body>
-<div class="header">
-    <p>TODO</p>
-    <p>
-        <?php if (isset($_SESSION['user_name'])):
-        echo $_SESSION['user_name'];
-             endif;?>
-    </p>
+    <div class="header">
+        <p><a href="/">TODO</a></p>
+        <div class="right_header">
+            <ul>
+                <?php if (isset($_SESSION['user_name'])): ?>
+                <li> <?php echo 'hi, '. $_SESSION['user_name']; ?></li>
+                <li><a href="/archive">archive</a></li>
+                <li><a href="/logout">Log out</a></li>
+                <?php endif; ?>
+
+            </ul>
+        </div>
+
+
 </div>
