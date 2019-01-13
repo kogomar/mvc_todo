@@ -20,13 +20,52 @@ $(document).ready(function() {
     });
 
 
-});
+    $("#pro_send").on("click", function () {
+        let pcolor = $('#pro_color').val();
+        let pname= $('#pro_name').val();
+        let user = $('#puser').val();
 
+        $.ajax({
+            method: "POST",
+            url: "/",
+            data: { action: "add", param: "project", color:pcolor, name:pname, puser: user }
+        })
+            .done(function( msg ) {
+                alert( "Data Saved: " + msg );
+
+
+            });
+    });
+});
 function deleteTask(id) {
     $.ajax({
         method: "POST",
         url: "/",
         data: { action: "delete", param: "task", id:id }
+    })
+        .done(function( msg ) {
+            alert( "Data Saved: " + msg );
+        });
+}
+function deletePro(id) {
+    $.ajax({
+        method: "POST",
+        url: "/",
+        data: { action: "delete", param: "project", id:id }
+    })
+        .done(function( msg ) {
+            let arr = msg.split("<!", 2);
+            if (arr[0] === 'Delete false! You have tasks in progress' ) {
+                alert(arr[0]);
+            }
+        });
+}
+
+function doneTask(id) {
+    $.ajax({
+        method: "POST",
+        url: "/",
+        data: { action: "done", param: "task", id:id }
     })
         .done(function( msg ) {
             alert( "Data Saved: " + msg );

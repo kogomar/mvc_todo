@@ -20,6 +20,12 @@ class TaskController
     {
         TaskModel::editTask($data);
     }
+    public function actionDone($data)
+    {
+        $id = $data['id'];
+        TaskModel::doneTask($id);
+    }
+
     public function actionSeven()
     {
         echo('hi');
@@ -31,7 +37,6 @@ class TaskController
     public function actionShowdone()
     {
        $tasks = TaskModel::showDoneTasks();
-
 
         View::generate('DoneTasksView.php', $tasks);
     }

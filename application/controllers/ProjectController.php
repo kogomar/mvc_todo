@@ -4,21 +4,18 @@ include_once APP.'/models/ProjectModel.php';
 
 class ProjectController
 {
-    public function actionAdd()
+    public function actionAdd($data)
     {
-        ProjectModel::addProject();
+        ProjectModel::addProject($data);
     }
-    public function actionDelete()
+    public function actionDelete($data)
     {
-        ProjectModel::deleteProject();
+       $id =  $data['id'];
+        ProjectModel::deleteProject($id);
     }
-    public function actionEdit()
+    public function actionEdit($data)
     {
-        ProjectModel::deleteProject();
+        ProjectModel::editProject($data);
     }
-    public function actionView($id)
-    {
-        ProjectModel::viewProject($id);
-             echo 'Single project '.$id;
-    }
+
 }

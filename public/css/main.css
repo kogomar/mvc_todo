@@ -83,8 +83,9 @@ a{
 }
 .projects ul{
     width: 100%;
-    margin: 0;
+    margin: 5px 38%;
     padding: 0;
+    display: flex;
 }
 .projects li{
     text-align: center;
@@ -93,12 +94,10 @@ a{
     color: #474747;
     font-size: 12px;
 }
-th{
-    border: 1px solid #656565;
-}
-tr{
-    border-bottom: 1px solid #656565;
-    height: 25px;
+.pro_menu{
+    display: block;
+    margin: 0 0 0 30px;
+    font-size: 16px;
 }
 .second{
     text-align: right;
@@ -148,9 +147,15 @@ tr{
 
 
 /* Tasks styles end */
-.tasks{
+.tasks, .old_tasks{
     width: 98%;
     margin-left: 1%;
+}
+.old_tasks{
+    border-bottom: 1px solid #2f49ff;
+}
+.old_tasks .single_task ul{
+    background-color: #ff00006e;
 }
 .single_task ul{
     display: flex;
