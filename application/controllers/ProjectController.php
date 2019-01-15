@@ -2,7 +2,7 @@
 
 include_once APP.'/models/ProjectModel.php';
 
-class ProjectController
+class ProjectController extends Controller
 {
     public function actionAdd($data)
     {

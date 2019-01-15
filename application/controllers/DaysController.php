@@ -10,7 +10,7 @@ class DaysController extends Controller
         $data['id'] = $id;
         $data['projects'] = ProjectModel::getProjectList();
         $data['tasks'] = TaskModel::singleProjectTask($id);
-
+        $data['message'] = 'Tasks for project ';
 
         View::generate('SingleProjectView.php', $data);
     }
@@ -19,17 +19,20 @@ class DaysController extends Controller
     {
         $data['projects'] = ProjectModel::getProjectList();
         $data['tasks'] = TaskModel::sevenDaysTasks();
-        View::generate('SingleProjectView.php', $data);
+        $data['message'] = 'Tasks for next 7 days';
+        View::generate('DoneTasksView.php', $data);
     }
     public function actionToday()
     {
         $data['projects'] = ProjectModel::getProjectList();
         $data['tasks'] = TaskModel::todayTasks();
-        View::generate('SingleProjectView.php', $data);
+        $data['message'] = 'Today tasks';
+        View::generate('DoneTasksView.php', $data);
     }
     public function actionShowdone()
     {   $data['projects'] = ProjectModel::getProjectList();
         $data['tasks'] = TaskModel::showDoneTasks();
+        $data['message'] = 'Done tasks';
 
         View::generate('DoneTasksView.php', $data);
     }

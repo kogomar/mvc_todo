@@ -5,6 +5,7 @@
             <ul>
                 <li><a href="/today">Today </a></li>
                 <li><a href="/nextseven">Next 7 days</a></li>
+                <li><a href="/archive">Done tasks</a></li>
             </ul>
         </div>
         <div class="projects">
@@ -115,10 +116,6 @@
                          <p>Enter task name: <input type="text" id="task_text" placeholder="Task name" value=""></p>
                          <input type="hidden" id="username"value="<?=$_SESSION['user_name']?>">
                          <input type="hidden" id="edit_id" value="">
-                         <input type="hidden" id="edit_tname" value="">
-                         <input type="hidden" id="edit_time" value="">
-                         <input type="hidden" id="edit_pname" value="">
-                         <input type="hidden" id="edit_priority" value="">
                          <p>Please choose task priority:
                              <select id="task_priority">
                                  <option>High</option>
@@ -145,7 +142,7 @@
 
 
                          <button class="btn-auth" id="send_task">Send</button>
-                         <button  class="btn-auth" id="update_task" onclick="updateTask(<?='7' ?>);">Update</button>
+                         <button  class="btn-auth" id="update_task">Update</button>
 
                 </div
 

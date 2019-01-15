@@ -1,7 +1,7 @@
 <?php
 
 
-class ProjectModel
+class ProjectModel extends Model
 {
     public static function getProjectList()
     {

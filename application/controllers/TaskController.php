@@ -4,7 +4,7 @@ include_once APP.'/models/TaskModel.php';
 
 echo 'hi';
 
-class TaskController
+class TaskController extends Controller
 {
     public function actionAdd($data)
     {

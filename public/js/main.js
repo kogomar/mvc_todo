@@ -94,6 +94,8 @@ function clickEditPro(id, name, color) {
 
 /* Tasks scripts start*/
 
+
+
 $(document).ready(function() {
 
     $("#show_add_task").on("click", function () {
@@ -154,27 +156,66 @@ $(document).ready(function() {
         },
     });
 
+
+
     $("#update_task").on("click", function () {
-            let id = $('#edit_id').val();
-            let user = $('#username').val();
-            let tname = $('#task_text').val();
-            let priority = $('#task_priority').val();
-            let projects_id = $('#task_project').val();
-            let project_id  = projects_id.split('|');
-            let date  = $('#task_day').val();
+        let id = $('#edit_id').val();
+        let user = $('#username').val();
+        let tname = $('#task_text').val();
+        let priority = $('#task_priority').val();
+        let projects_id = $('#task_project').val();
+        let project_id = projects_id.split('|');
+        let date = $('#task_day').val();
+        $.ajax({
+            method: "POST",
+            url: "/",
+            data: {
+                action: "edit",
+                param: "task",
+                id: id,
+                tname: tname,
+                projects_id: project_id[1],
+                priority: priority,
+                end_time: date
+            }
+        })
+            .done(function (msg) {
+               // alert("Data Saved: " + msg);
+            });
+        location.reload();
+});
 
-            $.ajax({
-                method: "POST",
-                url: "/",
-                data: { action: "edit", param: "task", id:id, tname:tname, projects_id:project_id[1], priority:priority, end_time:date}
-            })
-                .done(function( msg ) {
-                    alert( "Data Saved: " + msg );
-                });
-
-        });
 
 });
+
+
+
+
+
+function updateTask(id, tname, e_time, pname, priority) {
+    let prior;
+    switch (priority) {
+        case '1':
+            prior = 'High';
+            break;
+        case '2':
+            prior = 'Medium';
+            break;
+        case '3':
+            prior= 'Low';
+            break;
+    }
+    $('#preview').show();
+    $('#task_status_p').hide();
+    $("#send_task").hide();
+    $('#update_task').show();
+
+    $('#edit_id').val(id);
+    $('#task_text').val(tname);
+    $('#task_priority').val(prior);
+
+}
+
 function deleteTask(id) {
     $.ajax({
         method: "POST",
@@ -200,27 +241,6 @@ function doneTask(id) {
         });
 
 }
-function updateTask(id, tname, e_time, pname, priority) {
-    let prior;
-    switch (priority) {
-        case '1':
-            prior = 'High';
-            break;
-        case '2':
-             prior = 'Medium';
-            break;
-        case '3':
-              prior= 'Low';
-            break;
-    }
-    $('#edit_id').val(id);
-    $('#preview').show();
-    $('#task_status_p').hide();
-    $("#send_task").hide();
-    $('#task_text').val(tname);
-    $('#task_priority').val(prior);
-    $('#task_day').val(task_day);
 
-}
 
 /* Tasks scripts end*/

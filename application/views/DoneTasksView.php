@@ -5,6 +5,7 @@
                 <ul>
                     <li><a href="/today">Today </a></li>
                     <li><a href="/nextseven">Next 7 days</a></li>
+                    <li><a href="/archive">Done tasks</a></li>
                 </ul>
             </div>
             <div class="projects">
@@ -29,6 +30,7 @@
             <?php if (!empty($data)): ?>
                 <div class="endtime_tasks"></div>
                 <div class="tasks">
+                    <h2><?=$data['message'] ?></h2>
                     <?php  foreach ($data['tasks'] as $task) : ?>
                         <div class="single_task" id="<?=$task['id']; ?>">
                             <ul data-taskhint="<?=$task['id']?>">
