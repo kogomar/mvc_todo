@@ -27,4 +27,10 @@ class DaysController extends Controller
         $data['tasks'] = TaskModel::todayTasks();
         View::generate('SingleProjectView.php', $data);
     }
+    public function actionShowdone()
+    {   $data['projects'] = ProjectModel::getProjectList();
+        $data['tasks'] = TaskModel::showDoneTasks();
+
+        View::generate('DoneTasksView.php', $data);
+    }
 }

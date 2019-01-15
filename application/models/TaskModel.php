@@ -52,15 +52,15 @@ class TaskModel extends Model
     }
     public static function editTask($data){
         $data['priority'] =  self::getPriority($data['priority']);
-        $data['status']  = self::getStatus($data['status']);
 
         $db = DB::getConnection();
-        $sql = 'UPDATE tasks SET project_id = :project_id, tname = :tname, priority = :priority WHERE id = :id';
+        $sql = 'UPDATE tasks SET project_id = :project_id, tname = :tname, priority = :priority, end_time = :end_time WHERE id = :id';
         $result = $db->prepare($sql);
         $result->bindParam(':id', $data['id']);
         $result->bindParam(':project_id', $data['projects_id']);
         $result->bindParam(':tname', $data['tname']);
         $result->bindParam(':priority', $data['priority']);
+        $result->bindParam(':end_time', $data['end_time']);
         $result->execute();
     }
     public static function doneTask($id)
@@ -76,7 +76,7 @@ class TaskModel extends Model
     public static function showDoneTasks(){
         $db = DB::getConnection();
         $taskList = array();
-        $result = $db->query('SELECT projects.pname, projects.color, tasks.id, tasks.tname,  tasks.priority, tasks.end_time 
+        $result = $db->query('SELECT projects.pname, projects.color, tasks.id, tasks.tname, tasks.tuser, tasks.priority, tasks.end_time 
                                     FROM tasks, projects WHERE projects.id = tasks.project_id AND tasks.status=1 ORDER BY tasks.priority');
         $result ->setFetchMode(PDO::FETCH_ASSOC);
 
@@ -87,6 +87,7 @@ class TaskModel extends Model
             $taskList[$i]['priority'] = $row['priority'];
             $taskList[$i]['end_time'] = $row['end_time'];
             $taskList[$i]['pname'] = $row['pname'];
+            $taskList[$i]['user'] = $row['tuser'];
             $taskList[$i]['color'] = $row['color'];
             $i++;
         }
@@ -133,6 +134,21 @@ class TaskModel extends Model
             return false;
         }else{
             return true;
+        }
+    }
+    public static function checkIssetTasks($id)
+    {
+        $status = '0';
+        $db = DB::getConnection();
+        $sql = 'SELECT * FROM tasks WHERE project_id = :id  GROUP BY id';
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_STR);
+        $result->execute();
+        $row = $result->fetch();
+        if($row){
+            return true;
+        }else{
+            return false;
         }
     }
     public static function singleProjectTask($id)

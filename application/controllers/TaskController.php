@@ -26,18 +26,5 @@ class TaskController
         TaskModel::doneTask($id);
     }
 
-    public function actionSeven()
-    {
-        echo('hi');
-    }
-    public function actionToday()
-    {
-        echo('hi');
-    }
-    public function actionShowdone()
-    {
-       $tasks = TaskModel::showDoneTasks();
 
-        View::generate('DoneTasksView.php', $tasks);
-    }
 }

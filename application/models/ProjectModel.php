@@ -31,9 +31,14 @@ class ProjectModel
     public static function deleteProject($id){
         include_once APP.'/models/TaskModel.php';
         $check = TaskModel::checkDoneTasks($id);
+        $issetTask = TaskModel::checkIssetTasks($id);
         if($check) {
             $db = DB::getConnection();
-            $sql = 'DELETE projects, tasks FROM projects, tasks WHERE projects.id=:id AND tasks.project_id =:id';
+            if($issetTask){
+                $sql = 'DELETE projects, tasks FROM projects, tasks WHERE projects.id=:id AND tasks.project_id =:id';
+            }else{
+                $sql = 'DELETE FROM projects WHERE id=:id';
+            }
             $result = $db->prepare($sql);
             $result->bindParam(':id', $id);
             $result->execute();
@@ -42,16 +47,15 @@ class ProjectModel
         }
     }
     public static function editProject($data){
+
         $db = DB::getConnection();
         $sql = 'UPDATE projects SET  pname = :pname, color = :color WHERE id = :id';
         $result = $db->prepare($sql);
         $result->bindParam(':id', $data['id']);
-        $result->bindParam(':pname ', $data['pname ']);
+        $result->bindParam(':pname', $data['name']);
         $result->bindParam(':color', $data['color']);
         $result->execute();
     }
-    public static function viewProject($id){
-        $db = DB::getConnection();
-    }
+
 
 }
